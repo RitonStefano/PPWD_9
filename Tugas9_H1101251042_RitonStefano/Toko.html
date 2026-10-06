@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keranjang Belanja jQuery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 640px;
+      margin: 20px auto;
+      padding: 0 12px;
+      background: #f2f5f7;
+      color: #222;
+    }
+
+    section,
+    header {
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 6px 12px;
+      border: 0;
+      border-radius: 6px;
+      background: #1a6e8a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 7px;
+      margin: 4px 0;
+      box-sizing: border-box;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+
+    .invalid {
+      border: 2px solid red;
+    }
+
+    dialog {
+      border: 1px solid #999;
+      border-radius: 8px;
+      width: 320px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Toko Alat Tulis</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Produk</h2>
+      <ul id="produk"></ul>
+    </section>
+
+    <section>
+      <h2>Keranjang</h2>
+      <ul id="cart"></ul>
+      <p>Total: <strong id="cartTotal">Rp 0</strong></p>
+      <button id="btnCheckout">Checkout</button>
+    </section>
+
+    <section>
+      <h2>Riwayat</h2>
+      <ul id="riwayat"></ul>
+    </section>
+  </main>
+
+  <dialog id="modal">
+    <form id="form">
+      <h2>Data Pembeli</h2>
+      <label for="nama">Nama</label>
+      <input id="nama">
+      <small class="error">Nama minimal 3 karakter</small>
+
+      <label for="alamat">Alamat</label>
+      <textarea id="alamat" rows="2"></textarea>
+      <small class="error">Alamat minimal 10 karakter</small>
+
+      <label for="hp">No HP</label>
+      <input id="hp" placeholder="08123456789">
+      <small class="error">No HP 10-13 digit, awali 08</small>
+
+      <button type="submit">Bayar</button>
+      <button type="button" id="btnBatal">Batal</button>
+    </form>
+  </dialog>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function () {
+      var barang = [
+        { id: 1, nama: 'Buku Tulis', harga: 12000 },
+        { id: 2, nama: 'Pulpen', harga: 6000 },
+        { id: 3, nama: 'Kalkulator', harga: 95000 },
+        { id: 4, nama: 'Tas Ransel', harga: 135000 }
+      ];
+      var cart = [];
+      var rp = function (n) { return 'Rp ' + n.toLocaleString('id-ID'); };
+
+      // tampilkan daftar produk
+      $.each(barang, function (i, b) {
+        $('#produk').append('<li>' + b.nama + ' - ' + rp(b.harga) +
+          ' <button data-id="' + b.id + '">Tambah</button></li>');
+      });
+
+      $('#produk').on('click', 'button', function () {
+        var id = $(this).data('id');
+        var item = cart.find(function (c) { return c.id == id; });
+        if (item) item.qty++;
+        else {
+          var b = barang.find(function (x) { return x.id == id; });
+          cart.push({ id: b.id, nama: b.nama, harga: b.harga, qty: 1 });
+        }
+        updateCartUI();
+      });
+
+      $('#cart').on('click', 'button', function () {
+        var id = $(this).data('id');
+        cart = cart.filter(function (c) { return c.id != id; });
+        updateCartUI();
+      });
+
+      // Latihan 1: diskon 10% jika total > Rp 100.000
+      function updateCartUI() {
+        $('#cart').empty();
+        cart.forEach(function (c) {
+          $('#cart').append('<li>' + c.nama + ' x' + c.qty + ' = ' + rp(c.harga * c.qty) +
+            ' <button data-id="' + c.id + '">Hapus</button></li>');
+        });
+
+        var totalHarga = cart.reduce(function (sum, item) { return sum + item.harga * item.qty; }, 0);
+        if (totalHarga > 100000) {
+          var diskon = totalHarga * 0.1;
+          $('#cartTotal').html('<s>' + rp(totalHarga) + '</s> ' + rp(totalHarga - diskon));
+          totalHarga -= diskon;
+        } else {
+          $('#cartTotal').text(rp(totalHarga));
+        }
+        return totalHarga;
+      }
+
+      // Latihan 2: simpan riwayat ke localStorage
+      function simpanRiwayat(total, qty) {
+        var riwayat = JSON.parse(localStorage.getItem('riwayat')) || [];
+        riwayat.push({ tanggal: new Date().toISOString(), total: total, qty: qty });
+        localStorage.setItem('riwayat', JSON.stringify(riwayat));
+      }
+
+      function tampilRiwayat() {
+        var riwayat = JSON.parse(localStorage.getItem('riwayat')) || [];
+        $('#riwayat').empty();
+        riwayat.forEach(function (r) {
+          $('#riwayat').append('<li>' + new Date(r.tanggal).toLocaleString('id-ID') +
+            ' - ' + r.qty + ' barang <span>' + rp(r.total) + '</span></li>');
+        });
+      }
+
+      // Latihan 3: modal data pembeli + validasi
+      function cek(input, valid) {
+        $(input).toggleClass('invalid', !valid);
+        if (valid) $(input).next('.error').hide();
+        else $(input).next('.error').show();
+        return valid;
+      }
+      function cekNama() { return cek('#nama', $('#nama').val().trim().length >= 3); }
+      function cekAlamat() { return cek('#alamat', $('#alamat').val().trim().length >= 10); }
+      function cekHp() { return cek('#hp', /^08[0-9]{8,11}$/.test($('#hp').val())); }
+
+      $('#nama').on('input', cekNama);
+      $('#alamat').on('input', cekAlamat);
+      $('#hp').on('input', cekHp);
+
+      $('#btnCheckout').click(function () {
+        if (cart.length == 0) { alert('Keranjang masih kosong'); return; }
+        $('#modal')[0].showModal();
+      });
+      $('#btnBatal').click(function () {
+        $('#form')[0].reset();
+        $('.invalid').removeClass('invalid');
+        $('.error').hide();
+        $('#modal')[0].close();
+      });
+
+      $('#form').submit(function (e) {
+        e.preventDefault();
+        var a = cekNama(), b = cekAlamat(), c = cekHp();
+        if (!(a && b && c)) return;
+
+        var qty = cart.reduce(function (s, i) { return s + i.qty; }, 0);
+        simpanRiwayat(updateCartUI(), qty);
+        alert('Terima kasih, ' + $('#nama').val() + '!');
+        cart = [];
+        updateCartUI();
+        tampilRiwayat();
+        this.reset();
+        $('#modal')[0].close();
+      });
+
+      updateCartUI();
+      tampilRiwayat();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Profil jQuery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 640px;
+      margin: 20px auto;
+      padding: 0 12px;
+      background: #f2f5f7;
+      color: #222;
+    }
+
+    header,
+    section,
+    footer {
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    li {
+      background: #d6ecf0;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    button {
+      padding: 7px 14px;
+      border: 0;
+      border-radius: 6px;
+      background: #1a6e8a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 7px;
+      margin: 4px 0;
+      box-sizing: border-box;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+
+    .invalid {
+      border: 2px solid red;
+    }
+
+    #panel,
+    #tentang,
+    #sukses {
+      display: none;
+    }
+
+    #sukses {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="profil">
+    <h1 id="nama">Andi Pratama</h1>
+    <p>Front-End Developer · Jakarta</p>
+    <address>andi@example.com</address>
+    <ul id="skill">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>jQuery</li>
+    </ul>
+    <button id="btnNama">Ganti Nama</button>
+    <button id="btnSkill">Tambah Skill</button>
+    <button id="btnEfek">Efek</button>
+    <button id="btnReset">Reset</button>
+    <p id="panel"><input id="input" placeholder="Ketik di sini"> <button id="btnSimpan">Simpan</button></p>
+  </header>
+
+  <main>
+    <section>
+      <h2 id="judulTentang" style="cursor:pointer">Tentang Saya (klik)</h2>
+      <article id="tentang">
+        <p>Saya mahasiswa yang sedang belajar jQuery.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Form Kontak</h2>
+      <form id="form">
+        <label for="fNama">Nama</label>
+        <input id="fNama">
+        <small class="error">Nama minimal 3 karakter</small>
+
+        <label for="fEmail">Email</label>
+        <input id="fEmail">
+        <small class="error">Format email salah</small>
+
+        <label for="fPesan">Pesan</label>
+        <textarea id="fPesan" rows="3"></textarea>
+        <small class="error">Pesan minimal 10 karakter</small>
+
+        <button type="submit">Kirim</button>
+        <button type="button" id="btnResetForm">Reset</button>
+        <p id="sukses">Pesan berhasil dikirim!</p>
+      </form>
+    </section>
+  </main>
+
+  <footer><small>Praktikum jQuery</small></footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function () {
+      var mode = ''; // 'nama' atau 'skill'
+
+      // buka panel input untuk ganti nama / tambah skill
+      $('#btnNama').click(function () { mode = 'nama'; $('#panel').slideDown(); });
+      $('#btnSkill').click(function () { mode = 'skill'; $('#panel').slideDown(); });
+
+      $('#btnSimpan').click(function () {
+        var teks = $('#input').val().trim();
+        if (teks == '') return;
+        if (mode == 'nama') $('#nama').text(teks).css('color', '#1a6e8a');
+        else {
+          $('#skill').append('<li>' + $('<div>').text(teks).html() + '</li>');
+          pasangHover();
+        }
+        $('#input').val('');
+        $('#panel').slideUp();
+      });
+
+      $('#btnEfek').click(function () {
+        $('#profil').fadeOut(300).fadeIn(300).slideUp(300).slideDown(300);
+      });
+
+      $('#btnReset').click(function () {
+        $('#nama').text('Andi Pratama').css('color', '');
+        $('#skill').html('<li>HTML</li><li>CSS</li><li>JavaScript</li><li>jQuery</li>');
+        pasangHover();
+      });
+
+      $('#judulTentang').click(function () { $('#tentang').slideToggle(); });
+
+      // efek hover pada skill (dipanggil ulang setiap skill berubah)
+      function pasangHover() {
+        $('#skill li').off('mouseenter mouseleave').hover(
+          function () { $(this).css('background', '#9fd3de'); },
+          function () { $(this).css('background', ''); }
+        );
+      }
+      pasangHover();
+
+      // validasi: kembalikan true jika valid, tampilkan/sembunyikan error
+      function cek(input, valid) {
+        $(input).toggleClass('invalid', !valid);
+        if (valid) $(input).next('.error').hide();
+        else $(input).next('.error').show();
+        return valid;
+      }
+      function cekNama() { return cek('#fNama', $('#fNama').val().trim().length >= 3); }
+      function cekEmail() { return cek('#fEmail', /^\S+@\S+\.\S+$/.test($('#fEmail').val())); }
+      function cekPesan() { return cek('#fPesan', $('#fPesan').val().trim().length >= 10); }
+
+      $('#fNama').on('input', cekNama);
+      $('#fEmail').on('input', cekEmail);
+      $('#fPesan').on('input', cekPesan);
+
+      $('#btnResetForm').click(function () {
+        $('#form')[0].reset();
+        $('.invalid').removeClass('invalid');
+        $('.error').hide();
+      });
+
+      $('#form').submit(function (e) {
+        e.preventDefault();
+        var a = cekNama(), b = cekEmail(), c = cekPesan();
+        if (a && b && c) {
+          $('#sukses').fadeIn().delay(2000).fadeOut();
+          this.reset();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
