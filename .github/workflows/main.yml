@@ -1,0 +1,23 @@
+"name: Deploy to Teacher Server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trigger aaPanel Webhook
+        env:
+          WEBHOOK_KEY: ${{ 7tHoqCbB9TGg4PiNOVFvnRkFUegHYOARgoyqM8Y80FTsjKPV }}
+        run: |
+          curl -kfsS --retry 2 --retry-delay 3 \
+            -X POST \
+            https://103.171.84.81:8125/hook?access_key=${WEBHOOK_KEY}
