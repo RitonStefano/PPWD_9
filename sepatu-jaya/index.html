@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SepatuJaya | Langkah Lebih Percaya Diri</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="logo" href="#beranda">Sepatu<span>Jaya</span>.</a>
+        <button class="menu-toggle" aria-label="Buka menu">&#9776;</button>
+        <nav class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#produk">Produk</a>
+            <a href="#keunggulan">Keunggulan</a>
+            <a class="nav-cta" href="#pesan">Pesan Sekarang</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero section" id="beranda">
+            <div class="hero-copy">
+                <p class="eyebrow">KOLEKSI TERBARU 2026</p>
+                <h1>Langkah Keren,<br><span>Gaya Makin Pede.</span></h1>
+                <p class="hero-description">Temukan sepatu yang cocok untuk setiap langkahmu. Nyaman dipakai, keren
+                    dilihat, dan tetap ramah di kantong.</p>
+                <div class="hero-actions">
+                    <a href="#produk" class="button button-primary">Lihat Koleksi <span>&rarr;</span></a>
+                    <a href="#keunggulan" class="button button-secondary">Kenapa SepatuJaya?</a>
+                </div>
+                <div class="hero-stats">
+                    <div><strong>1.200+</strong><small>Pelanggan puas</small></div>
+                    <div><strong>50+</strong><small>Model pilihan</small></div>
+                    <div><strong>4,9/5</strong><small>Rating pelanggan</small></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-circle"></div>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85"
+                    alt="Sepatu sneaker merah">
+                <div class="floating-card"><span class="floating-icon">✦</span>
+                    <div><strong>Style of the day</strong><small>Berani tampil beda!</small></div>
+                </div>
+                <span class="hero-decoration">SJ / 026</span>
+            </div>
+        </section>
+
+        <section class="product-section section" id="produk">
+            <div class="section-heading">
+                <p class="eyebrow">PILIH FAVORITMU</p>
+                <h2>Temukan Sepatu <span>Andalanmu</span></h2>
+                <p>Dari aktivitas harian sampai olahraga, ada pilihan untuk setiap gaya.</p>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="Kategori sepatu">
+                <button class="tab active" data-category="semua" role="tab" aria-selected="true">Semua</button>
+                <button class="tab" data-category="sneakers" role="tab" aria-selected="false">Sneakers</button>
+                <button class="tab" data-category="olahraga" role="tab" aria-selected="false">Olahraga</button>
+                <button class="tab" data-category="formal" role="tab" aria-selected="false">Formal</button>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card" data-category="sneakers">
+                    <div class="product-image image-orange"><span class="product-label">Best Seller</span><img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                            alt="Sneakers merah"></div>
+                    <div class="product-info">
+                        <p class="product-category">SNEAKERS</p>
+                        <h3>Jaya Street Red</h3>
+                        <div class="product-bottom"><strong>Rp399.000</strong><button class="choose-product"
+                                data-product="Jaya Street Red">Pilih +</button></div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="olahraga">
+                    <div class="product-image image-blue"><span class="product-label">Ringan</span><img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                            alt="Sepatu olahraga"></div>
+                    <div class="product-info">
+                        <p class="product-category">OLAHRAGA</p>
+                        <h3>Jaya Run Pro</h3>
+                        <div class="product-bottom"><strong>Rp459.000</strong><button class="choose-product"
+                                data-product="Jaya Run Pro">Pilih +</button></div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="formal">
+                    <div class="product-image image-sand"><span class="product-label">Smart Look</span><img
+                            src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=700&q=80"
+                            alt="Sepatu formal cokelat"></div>
+                    <div class="product-info">
+                        <p class="product-category">FORMAL</p>
+                        <h3>Jaya Classic</h3>
+                        <div class="product-bottom"><strong>Rp529.000</strong><button class="choose-product"
+                                data-product="Jaya Classic">Pilih +</button></div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="sneakers">
+                    <div class="product-image image-green"><span class="product-label">New Arrival</span><img
+                            src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
+                            alt="Sneakers putih"></div>
+                    <div class="product-info">
+                        <p class="product-category">SNEAKERS</p>
+                        <h3>Jaya Daily White</h3>
+                        <div class="product-bottom"><strong>Rp379.000</strong><button class="choose-product"
+                                data-product="Jaya Daily White">Pilih +</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="benefits-section section" id="keunggulan">
+            <div class="section-heading">
+                <p class="eyebrow">BELANJA TANPA RAGU</p>
+                <h2>Kenapa Pilih <span>SepatuJaya?</span></h2>
+            </div>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✓</div>
+                    <h3>Kualitas Terpilih</h3>
+                    <p>Material nyaman dan pilihan model yang cocok untuk aktivitasmu.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">↗</div>
+                    <h3>Harga Bersahabat</h3>
+                    <p>Tampil maksimal tanpa harus menguras isi dompet.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⌂</div>
+                    <h3>Pesan Praktis</h3>
+                    <p>Isi formulir pemesanan dan tentukan sepatu favoritmu dengan mudah.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="order-section section" id="pesan">
+            <div class="order-intro">
+                <p class="eyebrow">SATU LANGKAH LAGI</p>
+                <h2>Siap Menemukan <span>Pasangan Barumu?</span></h2>
+                <p>Isi data berikut untuk membuat pesanan. Pastikan informasi yang kamu masukkan sudah benar.</p>
+                <div class="order-note"><span>✦</span>
+                    <p><strong>Tips:</strong> Pilih ukuran yang biasa kamu gunakan dan cek kembali alamat pengiriman.
+                    </p>
+                </div>
+            </div>
+            <form id="orderForm" class="order-form" novalidate>
+                <h3>Form Pemesanan</h3>
+                <p class="form-subtitle">Kolom bertanda * wajib diisi.</p>
+                <div class="form-grid">
+                    <div class="form-group"><label for="nama">Nama lengkap *</label><input type="text" id="nama"
+                            name="nama" placeholder="Nama sesuai penerima"></div>
+                    <div class="form-group"><label for="email">Email *</label><input type="email" id="email"
+                            name="email" placeholder="nama@email.com"></div>
+                    <div class="form-group"><label for="telepon">Nomor telepon *</label><input type="text" id="telepon"
+                            name="telepon" placeholder="08xxxxxxxxxx"></div>
+                    <div class="form-group"><label for="produkPilihan">Model sepatu *</label><select id="produkPilihan"
+                            name="produkPilihan">
+                            <option value="">Pilih model</option>
+                            <option>Jaya Street Red</option>
+                            <option>Jaya Run Pro</option>
+                            <option>Jaya Classic</option>
+                            <option>Jaya Daily White</option>
+                        </select></div>
+                    <div class="form-group"><label for="ukuran">Ukuran sepatu *</label><select id="ukuran"
+                            name="ukuran">
+                            <option value="">Pilih ukuran</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                        </select></div>
+                    <div class="form-group"><label for="jumlah">Jumlah pasang *</label><input type="number" id="jumlah"
+                            name="jumlah" min="1" max="10" placeholder="Misalnya 1"></div>
+                    <div class="form-group full-width"><label for="alamat">Alamat pengiriman *</label><textarea
+                            id="alamat" name="alamat" rows="3"
+                            placeholder="Jalan, nomor rumah, kecamatan, kota"></textarea></div>
+                    <div class="form-group full-width"><label for="pembayaran">Metode pembayaran *</label><select
+                            id="pembayaran" name="pembayaran">
+                            <option value="">Pilih metode pembayaran</option>
+                            <option>Transfer bank</option>
+                            <option>E-wallet</option>
+                            <option>Bayar di tempat (COD)</option>
+                        </select></div>
+                    <div class="form-group full-width checkbox-group"><input type="checkbox" id="persetujuan"
+                            name="persetujuan"><label for="persetujuan">Saya memastikan data pemesanan sudah
+                            benar.</label></div>
+                </div>
+                <button type="submit" class="button button-primary submit-button">Kirim Pesanan
+                    <span>&rarr;</span></button>
+                <div id="formMessage" class="form-message" role="status"></div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a class="logo footer-logo" href="#beranda">Sepatu<span>Jaya</span>.</a>
+        <p>Temani setiap langkah, rayakan setiap gaya.</p>
+        <small>&copy; 2026 SepatuJaya. Landing page untuk tugas praktikum.</small>
+    </footer>
+</body>
+
+</html>
