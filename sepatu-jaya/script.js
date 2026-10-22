@@ -30,6 +30,7 @@ $(document).ready(function () {
             $('.product-card[data-category="' + kategori + '"]').fadeIn(350);
         }
     });
+    
 
     // Efek jQuery 4: animate untuk menggulir ke form dan menyorotnya.
     $(".choose-product").on("click", function () {
