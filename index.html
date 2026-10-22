@@ -1,164 +1,478 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warung Ice Cream - Es Krim Segar Setiap Hari</title>
+    <title>Pusat Dokumen</title>
 
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg: #0c0d14;
+            --card: #151722;
+            --text: #f5f5fa;
+            --muted: #a0a3b5;
+            --primary: #a78bfa;
+            --border: #292c3b;
+        }
 
-    <!-- Font Awesome untuk ikon -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
-    <!-- CSS Eksternal -->
-    <link rel="stylesheet" href="style.css">
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            border-bottom: 1px solid var(--border);
+            background: #0c0d14ee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            background: var(--primary);
+            color: #171127;
+            border-radius: 10px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            color: var(--muted);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(
+                ellipse at top, #30224d, var(--bg) 70%
+            );
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 13px;
+            border: 1px solid #59447c;
+            border-radius: 30px;
+            color: var(--primary);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 24px;
+            background: var(--primary);
+            color: #171127;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Projects */
+        .projects {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 24px 90px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        #search {
+            width: 260px;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            color: var(--text);
+            outline: none;
+        }
+
+        #search:focus {
+            border-color: var(--primary);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            transition: 0.25s;
+            animation: appear 0.5s ease both;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            background: #1c1f2d;
+        }
+
+        .project-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            font-size: 26px;
+            background: #a78bfa18;
+            margin-bottom: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        .category {
+            color: var(--primary);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .project-link {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #empty-message {
+            text-align: center;
+            color: var(--muted);
+            padding: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 850px) {
+            .project-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .navbar {
+                padding: 16px 5%;
+            }
+        }
+
+        /* HP */
+        @media (max-width: 560px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav {
+                gap: 16px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 75px 20px;
+            }
+
+            .section-header {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            #search {
+                width: 100%;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects {
+                padding: 45px 18px 60px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <!-- ========== NAVBAR ========== -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-ice-cream"></i>
-                <span>Warung Ice Cream</span>
-            </div>
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-icon">P</span>
+            Pusat Dokumen
+        </a>
 
-            <div class="nav-menu" id="navMenu">
-                <a class="nav-link active" data-filter="all">Semua</a>
-                <a class="nav-link" data-filter="es-krim">Es Krim</a>
-                <a class="nav-link" data-filter="sundae">Sundae</a>
-                <a class="nav-link" data-filter="minuman">Minuman</a>
-            </div>
+        <nav>
+            <a href="#beranda">Beranda</a>
+            <a href="#proyek">Proyek</a>
+        </nav>
+    </header>
 
-            <div class="cart-btn" id="cartBtn">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-text">Keranjang</span>
-                <span class="cart-badge" id="cartBadge">0</span>
-            </div>
+    <main>
+        <section class="hero" id="beranda">
+            <span class="badge">MY DIGITAL WORKSPACE</span>
 
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+            <h1>
+                Semua Proyekmu,<br>
+                <span>Dalam Satu Tempat.</span>
+            </h1>
 
-    <!-- ========== HERO SECTION ========== -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Selamat Datang di <span>Warung Ice Cream</span> 🍦</h1>
-            <p>Pilih es krim favoritmu, tambahkan ke keranjang, dan nikmati kesegarannya!</p>
+            <p>
+                Pusat akses untuk seluruh website dan proyek
+                yang telah kamu buat.
+            </p>
 
-            <div class="search-box">
-                <input type="text" id="searchProduk" placeholder="Cari es krim favoritmu...">
-                <i class="fas fa-search"></i>
-            </div>
-        </div>
-    </section>
+            <a href="#proyek" class="btn">
+                Jelajahi Proyek ↓
+            </a>
+        </section>
 
-    <!-- ========== PRODUK SECTION ========== -->
-    <section class="produk-section">
-        <div class="section-header">
-            <h2><i class="fas fa-list"></i> Menu Kami</h2>
-            <div class="filter-btns">
-                <button class="filter-btn active" data-cat="all">Semua</button>
-                <button class="filter-btn" data-cat="es-krim">Es Krim</button>
-                <button class="filter-btn" data-cat="sundae">Sundae</button>
-                <button class="filter-btn" data-cat="minuman">Minuman</button>
-            </div>
-        </div>
-
-        <!-- Grid produk akan di-render oleh jQuery -->
-        <div class="produk-grid" id="produkGrid"></div>
-    </section>
-
-    <!-- ========== CART SIDEBAR ========== -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <aside class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-bag"></i> Keranjang Belanja</h3>
-            <button class="cart-close" id="cartClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="cart-items" id="cartItems">
-            <!-- Item keranjang akan di-render oleh jQuery -->
-        </div>
-
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span class="total-price" id="cartTotal">Rp 0</span>
-            </div>
-            <button class="btn-checkout" id="btnCheckout">
-                <i class="fas fa-check-circle"></i> Checkout Sekarang
-            </button>
-        </div>
-    </aside>
-
-    <!-- ========== MODAL DATA PEMBELI (Latihan 3) ========== -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3><i class="fas fa-user"></i> Data Pembeli</h3>
-                <button type="button" class="modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <form id="formPembeli" novalidate>
-                <div class="form-group">
-                    <label for="inputNama">Nama Lengkap</label>
-                    <input type="text" id="inputNama" placeholder="Contoh: Budi Santoso">
-                    <small class="error-msg"></small>
+        <section class="projects" id="proyek">
+            <div class="section-header">
+                <div>
+                    <h2>Daftar Proyek</h2>
+                    <p id="project-count">Memuat proyek...</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="inputAlamat">Alamat Pengiriman</label>
-                    <textarea id="inputAlamat" rows="3" placeholder="Jalan, nomor rumah, kecamatan, kota"></textarea>
-                    <small class="error-msg"></small>
-                </div>
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="Cari proyek..."
+                    aria-label="Cari proyek"
+                >
+            </div>
 
-                <div class="form-group">
-                    <label for="inputHp">No. HP</label>
-                    <input type="tel" id="inputHp" placeholder="Contoh: 081234567890">
-                    <small class="error-msg"></small>
-                </div>
+            <div class="project-grid" id="project-list"></div>
 
-                <div class="modal-summary">
-                    <span>Total Bayar:</span>
-                    <strong id="modalTotal">Rp 0</strong>
-                </div>
+            <p id="empty-message" hidden>
+                Proyek tidak ditemukan.
+            </p>
+        </section>
+    </main>
 
-                <button type="submit" class="btn-checkout" id="btnKonfirmasi">
-                    <i class="fas fa-check-circle"></i> Konfirmasi Pesanan
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ========== TOAST NOTIFICATION ========== -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMsg">Produk ditambahkan!</span>
-    </div>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
-        <p><strong>Warung Ice Cream</strong> © 2026</p>
-        <p>Praktikum Pemrograman Web Dasar · Prodi Sistem Informasi</p>
+    <footer>
+        <p>
+            &copy; <span id="year"></span>
+            Pusat Dokumen. Dibuat untuk mengelola proyek digital.
+        </p>
     </footer>
 
-    <!-- JavaScript Eksternal -->
-    <script src="script.js"></script>
+    <script>
+        // DATA PROYEK
+        const projects = [
+            {
+                name: "Warung Ice Cream",
+                description: "Website warung es krim dengan tampilan menarik.",
+                url: "warung-ice-cream/index.html",
+                icon: "🍦",
+                category: "Kuliner"
+            },
+            {
+                name: "Web Kopi",
+                description: "Website untuk menampilkan produk dan informasi kopi.",
+                url: "web-kopi/webkopi.html",
+                icon: "☕",
+                category: "Kuliner"
+            },
+            {
+                name: "Toko Sepatu",
+                description: "Landing page toko sepatu dengan fitur interaktif.",
+                url: "sepatu-jaya/index.html",
+                icon: "👟",
+                category: "E-commerce"
+            }
+        ];
+
+        // ELEMEN HTML
+        const projectList = document.getElementById("project-list");
+        const searchInput = document.getElementById("search");
+        const projectCount = document.getElementById("project-count");
+        const emptyMessage = document.getElementById("empty-message");
+
+        // MEMBUAT KARTU PROYEK
+        function displayProjects(data) {
+            projectList.replaceChildren();
+
+            projectCount.textContent = data.length + " proyek tersedia";
+            emptyMessage.hidden = data.length !== 0;
+
+            data.forEach(function(project) {
+                const card = document.createElement("article");
+                card.className = "project-card";
+
+                const icon = document.createElement("div");
+                icon.className = "project-icon";
+                icon.textContent = project.icon;
+
+                const category = document.createElement("span");
+                category.className = "category";
+                category.textContent = project.category;
+
+                const title = document.createElement("h3");
+                title.textContent = project.name;
+
+                const description = document.createElement("p");
+                description.textContent = project.description;
+
+                const link = document.createElement("a");
+                link.className = "project-link";
+                link.href = project.url;
+                link.setAttribute("aria-label", "Buka " + project.name);
+
+                const linkText = document.createElement("span");
+                linkText.textContent = "Buka Proyek";
+
+                const arrow = document.createElement("span");
+                arrow.textContent = "↗";
+
+                link.append(linkText, arrow);
+                card.append(icon, category, title, description, link);
+                projectList.appendChild(card);
+            });
+        }
+
+        // PENCARIAN PROYEK
+        searchInput.addEventListener("input", function() {
+            const keyword = searchInput.value.trim().toLowerCase();
+
+            const filteredProjects = projects.filter(function(project) {
+                return (
+                    project.name.toLowerCase().includes(keyword) ||
+                    project.description.toLowerCase().includes(keyword) ||
+                    project.category.toLowerCase().includes(keyword)
+                );
+            });
+
+            displayProjects(filteredProjects);
+        });
+
+        // TAHUN OTOMATIS
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // TAMPILKAN SEMUA PROYEK
+        displayProjects(projects);
+    </script>
+
 </body>
 </html>
