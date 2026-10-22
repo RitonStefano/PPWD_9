@@ -794,6 +794,7 @@ button {
     .full-width {
         grid-column: auto
     }
+    
 }
 
 @media(prefers-reduced-motion:reduce) {
