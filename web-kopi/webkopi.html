@@ -33,9 +33,8 @@
             background: var(--krem);
             color: var(--gelap);
             line-height: 1.6;
-            scroll-behavior: auto;
+            scroll-behavior: smooth;
         }
-
 
         .container {
             max-width: 1000px;
@@ -664,34 +663,15 @@
                 }
             });
 
-
-            // Smooth scroll untuk perpindahan menu
+            // Smooth scroll untuk link internal
             $('a[href^="#"]').on('click', function (e) {
                 const href = $(this).attr('href');
-
-                if (!href || href === '#') return;
-
+                if (href.length < 2) return;
                 const $tujuan = $(href);
-
                 if ($tujuan.length === 0) return;
-
                 e.preventDefault();
-
-                // Tutup dropdown setelah menu dipilih
-                $('.dropdown-menu').stop(true, true).slideUp(200);
-
-                // Hitung posisi tujuan agar tidak tertutup navbar
-                const tinggiNavbar = $('nav').outerHeight();
-                const posisiTujuan = $tujuan.offset().top - tinggiNavbar;
-
-                // Hentikan animasi sebelumnya, lalu scroll secara halus
-                $('html, body')
-                    .stop(true)
-                    .animate({
-                        scrollTop: Math.max(0, posisiTujuan)
-                    }, 700, 'swing');
+                $('html, body').animate({ scrollTop: $tujuan.offset().top - 60 }, 500);
             });
-
         });
     </script>
 </body>
