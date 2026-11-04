@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminPanel | Dashboard</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark topbar fixed-top">
+    <div class="container-fluid px-3 px-lg-4">
+      <button class="btn btn-outline-light d-lg-none me-2" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar"
+              aria-label="Buka menu navigasi">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <a class="navbar-brand fw-bold" href="#">
+        <span class="brand-mark"><i class="bi bi-grid-1x2-fill"></i></span>
+        Admin<span class="brand-light">Panel</span>
+      </a>
+
+      <div class="d-flex align-items-center ms-auto order-lg-3">
+        <div class="dropdown">
+          <button class="btn profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="avatar">AD</span>
+            <span class="d-none d-sm-inline ms-2">Administrator</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+            <li><h6 class="dropdown-header">Akun Saya</h6></li>
+            <li><a class="dropdown-item" href="#profil"><i class="bi bi-person me-2"></i>Profil</a></li>
+            <li><a class="dropdown-item" href="#pengaturan"><i class="bi bi-gear me-2"></i>Pengaturan</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item text-danger" type="button" id="logoutButton"><i class="bi bi-box-arrow-right me-2"></i>Keluar</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="collapse navbar-collapse order-lg-2" id="topNavbar">
+        <ul class="navbar-nav ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" href="#dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#data-pengguna">Data Pengguna</a></li>
+          <li class="nav-item"><a class="nav-link" href="#laporan">Laporan</a></li>
+        </ul>
+      </div>
+      <button class="navbar-toggler ms-2 order-lg-4" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Tampilkan navigasi">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Sidebar desktop: fixed; mobile: Bootstrap offcanvas -->
+  <aside class="sidebar d-none d-lg-flex flex-column">
+    <div class="sidebar-heading">MENU UTAMA</div>
+    <a class="side-link active" href="#dashboard"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="side-link" href="#data-pengguna"><i class="bi bi-people"></i>Pengguna</a>
+    <a class="side-link" href="#laporan"><i class="bi bi-bar-chart-line"></i>Laporan</a>
+    <div class="sidebar-heading mt-4">PREFERENSI</div>
+    <a class="side-link" href="#pengaturan"><i class="bi bi-gear"></i>Pengaturan</a>
+    <a class="side-link" href="#bantuan"><i class="bi bi-question-circle"></i>Bantuan</a>
+    <div class="sidebar-footer mt-auto">
+      <div class="small text-muted">AdminPanel</div>
+      <div class="small">Versi 1.0.0</div>
+    </div>
+  </aside>
+
+  <div class="offcanvas offcanvas-start mobile-sidebar" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold" id="sidebarLabel"><i class="bi bi-grid-1x2-fill me-2"></i>AdminPanel</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div class="sidebar-heading">MENU UTAMA</div>
+      <a class="side-link active" href="#dashboard" data-bs-dismiss="offcanvas"><i class="bi bi-speedometer2"></i>Dashboard</a>
+      <a class="side-link" href="#data-pengguna" data-bs-dismiss="offcanvas"><i class="bi bi-people"></i>Pengguna</a>
+      <a class="side-link" href="#laporan" data-bs-dismiss="offcanvas"><i class="bi bi-bar-chart-line"></i>Laporan</a>
+      <div class="sidebar-heading mt-4">PREFERENSI</div>
+      <a class="side-link" href="#pengaturan" data-bs-dismiss="offcanvas"><i class="bi bi-gear"></i>Pengaturan</a>
+      <a class="side-link" href="#bantuan" data-bs-dismiss="offcanvas"><i class="bi bi-question-circle"></i>Bantuan</a>
+      <div class="sidebar-footer mt-auto"><div class="small text-muted">AdminPanel</div><div class="small">Versi 1.0.0</div></div>
+    </div>
+  </div>
+
+  <main class="main-content" id="dashboard">
+    <div class="container-fluid px-3 px-md-4 py-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <p class="eyebrow mb-1">RINGKASAN AKTIVITAS</p>
+          <h1 class="page-title mb-1">Dashboard</h1>
+          <p class="text-secondary mb-0">Selamat datang kembali! Berikut ringkasan data hari ini.</p>
+        </div>
+        <button class="btn btn-primary-custom" type="button" id="exportButton">
+          <i class="bi bi-download me-2"></i>Ekspor Data
+        </button>
+      </div>
+
+      <section class="row g-3 g-xl-4 mb-4" aria-label="Statistik utama">
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon icon-blue"><i class="bi bi-people-fill"></i></div>
+            <div class="stat-label">Total Pengguna</div>
+            <div class="stat-value" id="totalUsers">1.284</div>
+            <div class="stat-foot"><span class="trend-up"><i class="bi bi-arrow-up-right"></i> 12,8%</span> dari bulan lalu</div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon icon-green"><i class="bi bi-person-check-fill"></i></div>
+            <div class="stat-label">Pengguna Aktif</div>
+            <div class="stat-value">1.056</div>
+            <div class="stat-foot"><span class="trend-up"><i class="bi bi-arrow-up-right"></i> 8,2%</span> dari bulan lalu</div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon icon-orange"><i class="bi bi-cart-check-fill"></i></div>
+            <div class="stat-label">Total Transaksi</div>
+            <div class="stat-value">3.672</div>
+            <div class="stat-foot"><span class="trend-up"><i class="bi bi-arrow-up-right"></i> 5,4%</span> dari bulan lalu</div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="stat-icon icon-purple"><i class="bi bi-wallet2"></i></div>
+            <div class="stat-label">Pendapatan</div>
+            <div class="stat-value">Rp48,6 jt</div>
+            <div class="stat-foot"><span class="trend-up"><i class="bi bi-arrow-up-right"></i> 10,1%</span> dari bulan lalu</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-panel" id="data-pengguna">
+        <div class="panel-header">
+          <div>
+            <h2 class="section-title mb-1">Data Pengguna</h2>
+            <p class="text-secondary small mb-0">Kelola dan lihat informasi pengguna yang terdaftar.</p>
+          </div>
+          <button class="btn btn-primary-custom btn-sm" type="button" id="addUserButton">
+            <i class="bi bi-plus-lg me-1"></i>Tambah Pengguna
+          </button>
+        </div>
+
+        <div class="toolbar row g-2 align-items-center">
+          <div class="col-12 col-md-6 col-lg-5">
+            <div class="search-wrap">
+              <i class="bi bi-search"></i>
+              <input type="search" class="form-control" id="searchInput" placeholder="Cari nama, email, atau peran..." aria-label="Cari pengguna">
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <select class="form-select" id="statusFilter" aria-label="Filter status">
+              <option value="">Semua Status</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Nonaktif">Nonaktif</option>
+              <option value="Menunggu">Menunggu</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 col-lg-4 text-md-end">
+            <span class="small text-secondary" id="resultCount" aria-live="polite">Menampilkan 5 pengguna</span>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle user-table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">PENGGUNA</th>
+                <th scope="col">ID PENGGUNA</th>
+                <th scope="col">PERAN</th>
+                <th scope="col">TANGGAL BERGABUNG</th>
+                <th scope="col">STATUS</th>
+                <th scope="col" class="text-end">AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <tr data-name="Nadia Putri" data-email="nadia.putri@email.com" data-role="Administrator" data-id="USR-001" data-date="12 Okt 2026" data-status="Aktif">
+                <td><div class="user-cell"><span class="user-avatar avatar-a">NP</span><div><div class="user-name">Nadia Putri</div><div class="user-email">nadia.putri@email.com</div></div></div></td>
+                <td>USR-001</td><td>Administrator</td><td>12 Okt 2026</td><td><span class="status-badge status-active">Aktif</span></td>
+                <td class="text-end"><button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail Nadia Putri"><i class="bi bi-eye"></i></button></td>
+              </tr>
+              <tr data-name="Rizky Pratama" data-email="rizky.p@email.com" data-role="Editor" data-id="USR-002" data-date="10 Okt 2026" data-status="Aktif">
+                <td><div class="user-cell"><span class="user-avatar avatar-b">RP</span><div><div class="user-name">Rizky Pratama</div><div class="user-email">rizky.p@email.com</div></div></div></td>
+                <td>USR-002</td><td>Editor</td><td>10 Okt 2026</td><td><span class="status-badge status-active">Aktif</span></td>
+                <td class="text-end"><button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail Rizky Pratama"><i class="bi bi-eye"></i></button></td>
+              </tr>
+              <tr data-name="Dinda Maharani" data-email="dinda.m@email.com" data-role="Penulis" data-id="USR-003" data-date="08 Okt 2026" data-status="Menunggu">
+                <td><div class="user-cell"><span class="user-avatar avatar-c">DM</span><div><div class="user-name">Dinda Maharani</div><div class="user-email">dinda.m@email.com</div></div></div></td>
+                <td>USR-003</td><td>Penulis</td><td>08 Okt 2026</td><td><span class="status-badge status-pending">Menunggu</span></td>
+                <td class="text-end"><button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail Dinda Maharani"><i class="bi bi-eye"></i></button></td>
+              </tr>
+              <tr data-name="Fajar Ramadhan" data-email="fajar.r@email.com" data-role="Editor" data-id="USR-004" data-date="05 Okt 2026" data-status="Nonaktif">
+                <td><div class="user-cell"><span class="user-avatar avatar-d">FR</span><div><div class="user-name">Fajar Ramadhan</div><div class="user-email">fajar.r@email.com</div></div></div></td>
+                <td>USR-004</td><td>Editor</td><td>05 Okt 2026</td><td><span class="status-badge status-inactive">Nonaktif</span></td>
+                <td class="text-end"><button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail Fajar Ramadhan"><i class="bi bi-eye"></i></button></td>
+              </tr>
+              <tr data-name="Alya Safitri" data-email="alya.s@email.com" data-role="Penulis" data-id="USR-005" data-date="02 Okt 2026" data-status="Aktif">
+                <td><div class="user-cell"><span class="user-avatar avatar-e">AS</span><div><div class="user-name">Alya Safitri</div><div class="user-email">alya.s@email.com</div></div></div></td>
+                <td>USR-005</td><td>Penulis</td><td>02 Okt 2026</td><td><span class="status-badge status-active">Aktif</span></td>
+                <td class="text-end"><button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail Alya Safitri"><i class="bi bi-eye"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="empty-state d-none" id="emptyState">
+            <i class="bi bi-search"></i>
+            <p class="mb-0">Data pengguna tidak ditemukan.</p>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <span class="small text-secondary">Data contoh untuk demonstrasi dashboard.</span>
+          <div class="small text-secondary">Halaman 1 dari 1</div>
+        </div>
+      </section>
+
+      <div class="footer-note text-center py-4" id="laporan">© 2026 AdminPanel. Dashboard Administrasi.</div>
+    </div>
+  </main>
+
+  <!-- Modal detail pengguna -->
+  <div class="modal fade" id="userDetailModal" tabindex="-1" aria-labelledby="userDetailTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0">
+        <div class="modal-header">
+          <div><p class="eyebrow mb-1">INFORMASI PENGGUNA</p><h5 class="modal-title fw-bold" id="userDetailTitle">Detail Pengguna</h5></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <div class="detail-profile mb-4">
+            <span class="user-avatar avatar-a" id="detailAvatar">NP</span>
+            <div><div class="fw-semibold" id="detailName">Nadia Putri</div><div class="text-secondary small" id="detailEmail">nadia.putri@email.com</div></div>
+          </div>
+          <div class="detail-grid">
+            <div><span>ID Pengguna</span><strong id="detailId">USR-001</strong></div>
+            <div><span>Peran</span><strong id="detailRole">Administrator</strong></div>
+            <div><span>Tanggal Bergabung</span><strong id="detailDate">12 Okt 2026</strong></div>
+            <div><span>Status</span><strong id="detailStatus">Aktif</strong></div>
+          </div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary-custom" data-bs-dismiss="modal">Tutup</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal tambah pengguna -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content border-0" id="addUserForm">
+        <div class="modal-header">
+          <div><p class="eyebrow mb-1">MANAJEMEN AKUN</p><h5 class="modal-title fw-bold" id="addUserTitle">Tambah Pengguna</h5></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3"><label for="newName" class="form-label">Nama lengkap</label><input class="form-control" id="newName" required maxlength="60" placeholder="Masukkan nama"></div>
+          <div class="mb-3"><label for="newEmail" class="form-label">Alamat email</label><input type="email" class="form-control" id="newEmail" required placeholder="nama@email.com"></div>
+          <div class="mb-3"><label for="newRole" class="form-label">Peran</label><select class="form-select" id="newRole" required><option value="Penulis">Penulis</option><option value="Editor">Editor</option><option value="Administrator">Administrator</option></select></div>
+          <div><label for="newStatus" class="form-label">Status</label><select class="form-select" id="newStatus"><option>Aktif</option><option>Menunggu</option><option>Nonaktif</option></select></div>
+          <div class="small text-secondary mt-3">Pengguna baru akan ditambahkan ke tabel pada halaman ini.</div>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button type="submit" class="btn btn-primary-custom">Simpan Pengguna</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="appToast" class="toast border-0 shadow" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header"><i class="bi bi-check-circle-fill text-success me-2"></i><strong class="me-auto">AdminPanel</strong><small>Baru saja</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Tutup"></button></div>
+      <div class="toast-body" id="toastMessage">Aksi berhasil dilakukan.</div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle includes Popper for dropdown, modal, offcanvas and toast -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const detailModal = new bootstrap.Modal(document.getElementById('userDetailModal'));
+    const addModal = new bootstrap.Modal(document.getElementById('addUserModal'));
+    const toast = new bootstrap.Toast(document.getElementById('appToast'));
+    const tableBody = document.getElementById('userTableBody');
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+
+    function showToast(message) {
+      document.getElementById('toastMessage').textContent = message;
+      toast.show();
+    }
+
+    function applyFilters() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const status = statusFilter.value;
+      let visible = 0;
+      [...tableBody.rows].forEach(row => {
+        const matchesKeyword = row.innerText.toLowerCase().includes(keyword);
+        const matchesStatus = !status || row.dataset.status === status;
+        const show = matchesKeyword && matchesStatus;
+        row.classList.toggle('d-none', !show);
+        if (show) visible++;
+      });
+      document.getElementById('resultCount').textContent = `Menampilkan ${visible} pengguna`;
+      document.getElementById('emptyState').classList.toggle('d-none', visible !== 0);
+    }
+    searchInput.addEventListener('input', applyFilters);
+    statusFilter.addEventListener('change', applyFilters);
+
+    tableBody.addEventListener('click', event => {
+      const button = event.target.closest('.detail-button');
+      if (!button) return;
+      const row = button.closest('tr');
+      document.getElementById('detailName').textContent = row.dataset.name;
+      document.getElementById('detailEmail').textContent = row.dataset.email;
+      document.getElementById('detailId').textContent = row.dataset.id;
+      document.getElementById('detailRole').textContent = row.dataset.role;
+      document.getElementById('detailDate').textContent = row.dataset.date;
+      document.getElementById('detailStatus').textContent = row.dataset.status;
+      document.getElementById('detailAvatar').textContent = row.dataset.name.split(' ').map(part => part[0]).slice(0, 2).join('').toUpperCase();
+      detailModal.show();
+    });
+
+    document.getElementById('addUserButton').addEventListener('click', () => addModal.show());
+
+    document.getElementById('addUserForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('newName').value.trim();
+      const email = document.getElementById('newEmail').value.trim();
+      const role = document.getElementById('newRole').value;
+      const status = document.getElementById('newStatus').value;
+      if (!name || !email) return;
+
+      const id = `USR-${String(tableBody.rows.length + 1).padStart(3, '0')}`;
+      const initials = name.split(' ').map(part => part[0]).slice(0, 2).join('').toUpperCase();
+      const colors = ['avatar-a', 'avatar-b', 'avatar-c', 'avatar-d', 'avatar-e'];
+      const avatarClass = colors[tableBody.rows.length % colors.length];
+      const date = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date());
+
+      const row = document.createElement('tr');
+      row.dataset.name = name;
+      row.dataset.email = email;
+      row.dataset.role = role;
+      row.dataset.id = id;
+      row.dataset.date = date;
+      row.dataset.status = status;
+
+      const cells = [
+        `<div class="user-cell"><span class="user-avatar ${avatarClass}">${initials}</span><div><div class="user-name"></div><div class="user-email"></div></div></div>`,
+        id, role, date,
+        `<span class="status-badge ${status === 'Aktif' ? 'status-active' : status === 'Menunggu' ? 'status-pending' : 'status-inactive'}">${status}</span>`,
+        '<button class="btn btn-light btn-sm detail-button" type="button" aria-label="Lihat detail pengguna"><i class="bi bi-eye"></i></button>'
+      ];
+      cells.forEach((content, index) => {
+        const cell = document.createElement('td');
+        if (index === 0) {
+          cell.innerHTML = content;
+          cell.querySelector('.user-name').textContent = name;
+          cell.querySelector('.user-email').textContent = email;
+        } else if (index === 5) {
+          cell.className = 'text-end';
+          cell.innerHTML = content;
+        } else if (index === 4) {
+          cell.innerHTML = content;
+        } else {
+          cell.textContent = content;
+        }
+        row.appendChild(cell);
+      });
+      tableBody.appendChild(row);
+      document.getElementById('addUserForm').reset();
+      addModal.hide();
+      applyFilters();
+      document.getElementById('totalUsers').textContent = (1284 + tableBody.rows.length - 5).toLocaleString('id-ID');
+      showToast(`${name} berhasil ditambahkan.`);
+    });
+
+    document.getElementById('exportButton').addEventListener('click', () => {
+      const headers = ['Nama', 'Email', 'ID Pengguna', 'Peran', 'Tanggal Bergabung', 'Status'];
+      const rows = [...tableBody.rows].map(row => [
+        row.dataset.name, row.dataset.email, row.dataset.id, row.dataset.role, row.dataset.date, row.dataset.status
+      ]);
+      const csv = [headers, ...rows].map(row => row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'data-pengguna.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+      showToast('Data pengguna berhasil diekspor ke CSV.');
+    });
+
+    document.getElementById('logoutButton').addEventListener('click', () => showToast('Ini merupakan demo, sehingga sesi tidak benar-benar diakhiri.'));
+  </script>
+</body>
+</html>
