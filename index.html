@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portofolio Riton</title> <!-- Menghubungkan file CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio proyek dan tugas Riton, mahasiswa Sistem Informasi.">
+    <title>Portofolio Riton</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
-<body> <!-- ===== Bagian atas ===== -->
-    <header class="header">
-        <h2 class="logo">Riton</h2> <button id="tombol-tema">Mode gelap</button>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a class="logo" href="#home" aria-label="Portofolio Riton - Beranda">
+            <span class="logo-icon">R</span>
+            <span>Portofolio Riton</span>
+        </a>
+        <nav aria-label="Navigasi utama">
+            <a href="#home">Beranda</a>
+            <a href="#projects">Proyek</a>
+            <a href="#contact">Kontak</a>
+        </nav>
     </header>
-    <main class="isi"> <!-- ===== Perkenalan ===== -->
-        <section class="perkenalan">
-            <h1>Halo, saya Riton.</h1>
-            <p>Mahasiswa Sistem Informasi yang suka membuat aplikasi web.</p>
-        </section> <!-- ===== Daftar proyek ===== -->
-        <h2>Proyek saya</h2> <!-- Kotak pencarian (dipakai oleh script.js) --> <input type="text" id="cari"
-            placeholder="Cari proyek...">
-        <section class="daftar-proyek">
-            <!-- Satu kartu = satu proyek.            href mengarah ke index.html di dalam folder proyek tersebut. -->
-            <a class="kartu" href="/MODUL12/buku-tamu-digital/index.html">
-                <h3>Buku Tamu Digital</h3>
-                <p>Formulir pencatatan tamu kantor.</p>
-            </a> <a class="kartu" href="/MODUL12/mav-platform/index.html">
-                <h3>MAV Platform</h3>
-                <p>Menu berbeda untuk setiap peran pengguna.</p>
-            </a>
-            <!-- Mau menambah proyek? Salin satu blok <a class="kartu"> di atas, lalu ubah href, judul, dan deskripsinya. -->
-        </section>
-        <p id="pesan-kosong" class="pesan-kosong">Proyek tidak ditemukan.</p>
-    </main> <!-- Menghubungkan file JavaScript (letakkan paling bawah) -->
-    <script src="script.js"></script>
-</body>
 
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <span class="badge">PORTOFOLIO MAHASISWA</span>
+        <h1>Halo, Saya <span>Riton.</span></h1>
+        <p>Saya mahasiswa Sistem Informasi yang tertarik pada pengembangan website, pemrograman, dan teknologi digital. Berikut kumpulan proyek dan tugas yang telah saya kerjakan.</p>
+        <a href="#projects" class="btn-primary">Jelajahi Proyek <span aria-hidden="true">↘</span></a>
+    </section>
+
+    <!-- DAFTAR PROYEK -->
+    <main class="projects" id="projects">
+        <div class="section-header">
+            <div>
+                <h2>Proyek Saya</h2>
+                <p id="project-count" aria-live="polite">Memuat proyek...</p>
+            </div>
+            <label class="search-wrap">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input type="search" id="search" placeholder="Cari proyek atau kategori..." aria-label="Cari proyek">
+            </label>
+        </div>
+
+        <div class="filter-list" aria-label="Filter kategori">
+            <button class="filter-btn active" type="button" data-category="Semua">Semua</button>
+            <button class="filter-btn" type="button" data-category="Website">Website</button>
+            <button class="filter-btn" type="button" data-category="Praktikum">Praktikum</button>
+            <button class="filter-btn" type="button" data-category="Pemrograman">Pemrograman</button>
+            <button class="filter-btn" type="button" data-category="Dashboard">Dashboard</button>
+        </div>
+
+        <div class="project-grid" id="project-list">
+            <!-- Kartu proyek dibuat secara otomatis melalui script.js -->
+        </div>
+        <p id="empty-message" hidden>Proyek tidak ditemukan. Coba kata kunci atau kategori lain.</p>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <p>Terima kasih telah mengunjungi portofolio saya.</p>
+        <span>© <span id="year"></span> Portofolio Riton</span>
+    </footer>
+</body>
 </html>
