@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNews ID - Portal Berita Teknologi</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Hero / Headline Utama */
+        .hero {
+            background: linear-gradient(135deg, #111827, #374151);
+            color: white;
+            padding: 70px 30px;
+            border-radius: 12px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            color: #d1d5db;
+        }
+
+        /* Kartu Berita */
+        .news-card {
+            height: 100%;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            border-left: 5px solid #0d6efd;
+            padding-left: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .trending-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                TechNews <span class="text-primary">ID</span>
+            </a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#menuNavbar"
+                aria-controls="menuNavbar" aria-expanded="false"
+                aria-label="Buka navigasi">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#berita-utama">Berita Utama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trending">Trending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#berita-terbaru">Berita Terbaru</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        
+    <main class="container my-4">
+
+        <!-- HEADLINE UTAMA / HERO -->
+        <section class="row mb-5" id="berita-utama">
+            <div class="col-12">
+                <div class="hero">
+                    <span class="badge bg-primary mb-3">HEADLINE UTAMA</span>
+                    <h1>Perkembangan Teknologi AI Mengubah Masa Depan Digital</h1>
+                    <p class="mt-3">
+                        Kecerdasan buatan semakin berkembang dan mulai digunakan
+                        dalam berbagai bidang, mulai dari pendidikan hingga industri.
+                    </p>
+                    <a href="#berita-terbaru" class="btn btn-primary mt-2">
+                        Baca Berita
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BERITA UTAMA + SIDEBAR -->
+        <section class="row g-4 mb-5">
+
+            <!-- Kolom Berita Utama -->
+            <div class="col-12 col-lg-8">
+                <h2 class="section-title">Berita Utama</h2>
+
+                <div class="card news-card shadow-sm">
+                    <img
+                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
+                        class="card-img-top"
+                        alt="Komponen teknologi komputer">
+
+                    <div class="card-body">
+                        <span class="badge bg-success mb-2">Teknologi</span>
+                        <h3 class="card-title">
+                            Inovasi Perangkat Keras Komputer Terus Berkembang
+                        </h3>
+                        <p class="text-muted small">
+                            27 Oktober 2026 | Redaksi TechNews
+                        </p>
+                        <p class="card-text">
+                            Inovasi perangkat keras terus mendorong peningkatan
+                            performa komputer. Perkembangan ini membuka peluang
+                            baru bagi industri teknologi dan masyarakat digital.
+                        </p>
+                        <a href="#berita-terbaru" class="btn btn-outline-primary">
+                            Selengkapnya
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Sidebar Trending -->
+            <aside class="col-12 col-lg-4" id="trending">
+                <h2 class="section-title">Trending</h2>
+
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+
+                        <div class="trending-item">
+                            <span class="text-primary fw-bold">01.</span>
+                            <h5 class="mt-2">AI dalam Dunia Pendidikan</h5>
+                            <p class="text-muted small mb-0">
+                                Bagaimana AI membantu proses belajar.
+                            </p>
+                        </div>
+
+                        <div class="trending-item">
+                            <span class="text-primary fw-bold">02.</span>
+                            <h5 class="mt-2">Keamanan Data Digital</h5>
+                            <p class="text-muted small mb-0">
+                                Pentingnya menjaga privasi di internet.
+                            </p>
+                        </div>
+
+                        <div class="trending-item">
+                            <span class="text-primary fw-bold">03.</span>
+                            <h5 class="mt-2">Tren Smartphone Terbaru</h5>
+                            <p class="text-muted small mb-0">
+                                Fitur baru dalam perangkat pintar.
+                            </p>
+                        </div>
+
+                        <div class="trending-item border-0">
+                            <span class="text-primary fw-bold">04.</span>
+                            <h5 class="mt-2">Perkembangan Cloud Computing</h5>
+                            <p class="text-muted small mb-0">
+                                Teknologi cloud untuk bisnis modern.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </aside>
+
+        </section>
+
+        <!-- GRID BERITA TERBARU -->
+        <section class="mb-5" id="berita-terbaru">
+            <h2 class="section-title">Berita Terbaru</h2>
+
+            <div class="row g-4">
+
+                <!-- Berita 1 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card news-card shadow-sm">
+                        <img
+                            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80"
+                            class="card-img-top"
+                            alt="Ilustrasi kecerdasan buatan">
+
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">AI</span>
+                            <h5 class="card-title">AI Semakin Canggih</h5>
+                            <p class="card-text small">
+                                Kecerdasan buatan membantu berbagai aktivitas
+                                manusia menjadi lebih efisien.
+                            </p>
+                            <a href="#berita-utama" class="btn btn-sm btn-outline-primary">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Berita 2 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card news-card shadow-sm">
+                        <img
+                            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+                            class="card-img-top"
+                            alt="Tim bekerja menggunakan komputer">
+
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Startup</span>
+                            <h5 class="card-title">Startup Digital Berkembang</h5>
+                            <p class="card-text small">
+                                Bisnis berbasis teknologi membuka peluang
+                                baru bagi generasi muda.
+                            </p>
+                            <a href="#berita-utama" class="btn btn-sm btn-outline-primary">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Berita 3 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card news-card shadow-sm">
+                        <img
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+                            class="card-img-top"
+                            alt="Laptop untuk aktivitas digital">
+
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark mb-2">
+                                Internet
+                            </span>
+                            <h5 class="card-title">Internet Semakin Cepat</h5>
+                            <p class="card-text small">
+                                Infrastruktur jaringan terus berkembang
+                                untuk mendukung kebutuhan digital.
+                            </p>
+                            <a href="#berita-utama" class="btn btn-sm btn-outline-primary">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Berita 4 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card news-card shadow-sm">
+                        <img
+                            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80"
+                            class="card-img-top"
+                            alt="Ilustrasi keamanan siber">
+
+                        <div class="card-body">
+                            <span class="badge bg-danger mb-2">Keamanan</span>
+                            <h5 class="card-title">Waspada Ancaman Siber</h5>
+                            <p class="card-text small">
+                                Pengguna internet perlu menjaga data pribadi
+                                dari berbagai ancaman digital.
+                            </p>
+                            <a href="#berita-utama" class="btn btn-sm btn-outline-primary">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <h4 class="fw-bold">
+                        TechNews <span class="text-primary">ID</span>
+                    </h4>
+                    <p class="text-secondary mb-0">
+                        Portal berita teknologi, inovasi, dan dunia digital.
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 text-md-end">
+                    <p class="mb-2">Ikuti perkembangan teknologi bersama kami.</p>
+                    <a href="#berita-utama" class="me-3">Berita Utama</a>
+                    <a href="#trending" class="me-3">Trending</a>
+                    <a href="#berita-terbaru">Berita Terbaru</a>
+                </div>
+            </div>
+
+            <hr class="border-secondary">
+
+            <p class="text-center text-secondary mb-0">
+                &copy; 2026 TechNews ID. Semua hak dilindungi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
